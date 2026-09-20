@@ -10,8 +10,7 @@ export const site: SiteMetadata = {
 	title: 'AI Engineer',
 	location: 'Chennai, India',
 	description: 'Maran A — AI Engineer based in Chennai, India.',
-	// TODO(content): replace with the production origin before launch.
-	url: 'https://example.com',
+	url: 'https://maran-arunmozhi.netlify.app',
 	locale: 'en_IN'
 };
 
