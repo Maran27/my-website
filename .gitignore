@@ -1,0 +1,12 @@
+.svelte-kit/
+build/
+.pnpm-store/
+node_modules/
+.netlify/
+
+.env
+.env.*
+!.env.example
+
+.DS_Store
+Thumbs.db

@@ -1,0 +1,574 @@
+@import 'tailwindcss';
+
+/*
+ * Design system — "Modern AI Lab × Editorial × Digital Instrument"
+ * ----------------------------------------------------------------
+ * Light-first, calm, highly intentional. The accent (#315CFF) is a
+ * precision instrument: active states, links, status indicators,
+ * selected numbers, hover states. Never large fills, never gradients.
+ *
+ * Tailwind v4 CSS-first configuration: tokens in `@theme` become
+ * utilities (`bg-canvas`, `text-ink-secondary`, `border-line`,
+ * `bg-accent`, `font-sans`, `font-mono`, …) automatically.
+ */
+@theme {
+	/* Surfaces */
+	--color-canvas: #f7f7f5;
+	--color-surface: #ffffff;
+
+	/* Text */
+	--color-ink: #0b0b0d;
+	--color-ink-secondary: #626262;
+	--color-ink-muted: #999999;
+
+	/* Borders */
+	--color-line: #e4e4e0;
+	--color-line-strong: #d3d3cd;
+
+	/* Accent — sparing, precise, never decorative at scale */
+	--color-accent: #315cff;
+	--color-accent-strong: #1f46d8;
+	--color-accent-soft: #edf1ff;
+
+	/* Typography: modern sans for display/body, monospace for technical
+	 * metadata. System stacks keep the site dependency-free and fast;
+	 * swap in webfonts here in a later milestone if needed. */
+	--font-sans:
+		'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+		sans-serif;
+	--font-mono:
+		'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono',
+		monospace;
+
+	/* Motion: one easing curve for the whole site. Entrances are slow and
+	 * calm; hovers are quick and precise. */
+	--ease-instrument: cubic-bezier(0.22, 1, 0.36, 1);
+	--duration-hover: 150ms;
+	--duration-entrance: 700ms;
+	--entrance-rise: 16px;
+}
+
+@layer base {
+	html {
+		color-scheme: light;
+		scroll-behavior: smooth;
+		-webkit-text-size-adjust: 100%;
+	}
+
+	body {
+		background-color: var(--color-canvas);
+		color: var(--color-ink);
+		font-family: var(--font-sans);
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+	}
+
+	/* Editorial headlines stay tight and balanced. */
+	h1,
+	h2,
+	h3 {
+		text-wrap: balance;
+		letter-spacing: -0.02em;
+	}
+
+	p {
+		text-wrap: pretty;
+	}
+
+	::selection {
+		background-color: var(--color-accent);
+		color: #ffffff;
+	}
+
+	/* Visible, calm keyboard focus everywhere. */
+	:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 3px;
+		border-radius: 2px;
+	}
+}
+
+@layer components {
+	/* ------------------------------------------------------------------
+	 * Containers
+	 * `.container-editorial` — default reading/canonical measure (72rem).
+	 * `.container-wide` — full-width visual moments (88rem).
+	 * Both are centered, full-bleed on small screens, stepped padding up.
+	 */
+	.container-editorial,
+	.container-wide {
+		width: 100%;
+		margin-inline: auto;
+		padding-inline: 1.25rem;
+	}
+
+	.container-editorial {
+		max-width: 72rem;
+	}
+
+	.container-wide {
+		max-width: 88rem;
+	}
+
+	@media (min-width: 40rem) {
+		.container-editorial,
+		.container-wide {
+			padding-inline: 2rem;
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.container-editorial,
+		.container-wide {
+			padding-inline: 2.5rem;
+		}
+	}
+
+	/* Narrow editorial measure for reading surfaces. */
+	.measure-reading {
+		max-width: 65ch;
+	}
+
+	/* ------------------------------------------------------------------
+	 * Spacing rhythm
+	 * Sections breathe with one fluid vertical rhythm instead of ad-hoc
+	 * padding. `.section-pad` = clamp(4.5rem → 8.5rem). Dividers are
+	 * hairlines (`.rule-line`), never boxes or shadows.
+	 */
+	.section-pad {
+		padding-block: clamp(4.5rem, 2rem + 8vw, 8.5rem);
+	}
+
+	.rule-line {
+		border-top: 1px solid var(--color-line);
+	}
+
+	/* ------------------------------------------------------------------
+	 * Typography hierarchy
+	 * Display → H1 → H2 → lead → body → small, then the technical track:
+	 * uppercase monospace metadata (labels, indexes, statuses).
+	 */
+	.type-display {
+		font-size: clamp(2.75rem, 1.75rem + 5vw, 5rem);
+		line-height: 1.02;
+		letter-spacing: -0.035em;
+		font-weight: 600;
+	}
+
+	.type-h1 {
+		font-size: clamp(2rem, 1.4rem + 3vw, 3.25rem);
+		line-height: 1.05;
+		letter-spacing: -0.03em;
+		font-weight: 600;
+	}
+
+	.type-h2 {
+		font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.25rem);
+		line-height: 1.1;
+		letter-spacing: -0.025em;
+		font-weight: 600;
+	}
+
+	.type-lead {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		color: var(--color-ink-secondary);
+	}
+
+	.type-body {
+		font-size: 1rem;
+		line-height: 1.7;
+	}
+
+	.type-small {
+		font-size: 0.875rem;
+		line-height: 1.6;
+	}
+
+	/* Technical track — uppercase monospace with subtle spacing:
+	 * AI ENGINEER · 01 / 05 · SYSTEM STATUS · 2026 · MACHINE LEARNING */
+	.type-technical {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 500;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+	}
+
+	/* Section index, e.g. "01 / 05". Pair with `.type-index-strong`
+	 * on the selected number when the accent is warranted. */
+	.type-index {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.18em;
+		color: var(--color-ink-secondary);
+	}
+
+	.type-index-strong {
+		color: var(--color-accent);
+	}
+
+	/* ------------------------------------------------------------------
+	 * Asymmetric layout
+	 * `.layout-12` is a 12-column editorial grid: single column on mobile,
+	 * 12 columns from `md` up so sections can offset content
+	 * (e.g. number 1–2, title 1–8, meta 10–12) instead of repeating
+	 * heading → paragraph → centered cards.
+	 */
+	.layout-12 {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	@media (min-width: 48rem) {
+		.layout-12 {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+		}
+	}
+
+	/* ------------------------------------------------------------------
+	 * Technical backgrounds — extremely subtle, lightweight, decorative.
+	 * Apply to empty `aria-hidden` layers or section wrappers, never
+	 * behind dense text. No particles, no gradients-as-decoration.
+	 */
+	.bg-grid-technical {
+		background-image:
+			linear-gradient(
+				to right,
+				color-mix(in srgb, var(--color-ink) 5%, transparent) 1px,
+				transparent 1px
+			),
+			linear-gradient(
+				to bottom,
+				color-mix(in srgb, var(--color-ink) 5%, transparent) 1px,
+				transparent 1px
+			);
+		background-size: 56px 56px;
+	}
+
+	/* Film-grain noise for empty overlay layers only (`aria-hidden`).
+	 * Opacity is baked in so consumers cannot accidentally wash out text. */
+	.bg-noise {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+		opacity: 0.05;
+	}
+
+	/* Soft vertical fade for technical backgrounds (strongest at top). */
+	.mask-fade-y {
+		mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+	}
+
+	/* ------------------------------------------------------------------
+	 * Motion primitives
+	 * Driven by the `reveal` action (`$lib/actions/reveal.ts`), which adds
+	 * `.reveal` + variant at mount (JS-only, so no-JS still shows content)
+	 * and `.is-visible` when the element enters the viewport.
+	 * Variants: `.reveal-rise` (fade + translate), `.reveal-fade`,
+	 * `.reveal-line` (hairlines/paths growing on the X axis).
+	 */
+	.reveal {
+		opacity: 0;
+		transition:
+			opacity var(--duration-entrance) var(--ease-instrument),
+			transform var(--duration-entrance) var(--ease-instrument);
+	}
+
+	.reveal-rise {
+		transform: translateY(var(--entrance-rise));
+	}
+
+	.reveal-line {
+		transform: scaleX(0);
+		transform-origin: left center;
+	}
+
+	.reveal.is-visible {
+		opacity: 1;
+		transform: none;
+	}
+
+	/* Subtle hover lift for interactive surfaces. Calm: 2px, quick. */
+	.hover-lift {
+		transition: transform var(--duration-hover) var(--ease-instrument);
+	}
+
+	.hover-lift:hover {
+		transform: translateY(-2px);
+	}
+
+	/* Small status indicator dot. Tones via Tailwind (`bg-accent`,
+	 * `bg-ink`, `bg-ink-muted`); pulse via `.status-dot-pulse`. */
+	.status-dot {
+		display: inline-block;
+		width: 8px;
+		height: 8px;
+		flex: none;
+		border-radius: 9999px;
+	}
+
+	.status-dot-pulse {
+		position: relative;
+	}
+
+	.status-dot-pulse::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background: inherit;
+		animation: status-ping 2.4s var(--ease-instrument) infinite;
+	}
+
+	@keyframes status-ping {
+		0% {
+			transform: scale(1);
+			opacity: 0.6;
+		}
+		70%,
+		100% {
+			transform: scale(2.4);
+			opacity: 0;
+		}
+	}
+
+	/* ------------------------------------------------------------------
+	 * System-visualization signals
+	 * A 5px accent dot travelling slowly down each connector. Decorative
+	 * only (`aria-hidden` at the call site); removed entirely under
+	 * reduced motion (see media query below).
+	 */
+	@keyframes signal-travel {
+		0% {
+			top: -3px;
+			opacity: 0;
+		}
+		18% {
+			opacity: 1;
+		}
+		82% {
+			opacity: 1;
+		}
+		100% {
+			top: calc(100% - 3px);
+			opacity: 0;
+		}
+	}
+
+	.signal-dot {
+		position: absolute;
+		left: 50%;
+		width: 5px;
+		height: 5px;
+		margin-left: -2.5px;
+		border-radius: 9999px;
+		background-color: var(--color-accent);
+		animation: signal-travel 3.4s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+	}
+
+	/* Horizontal variant: same dot, same timing, travelling left → right
+	 * along `h-px` connectors. Keeps the base class so reduced-motion
+	 * (`display: none`) continues to apply. */
+	@keyframes signal-travel-x {
+		0% {
+			left: -3px;
+			opacity: 0;
+		}
+		18% {
+			opacity: 1;
+		}
+		82% {
+			opacity: 1;
+		}
+		100% {
+			left: calc(100% - 3px);
+			opacity: 0;
+		}
+	}
+
+	.signal-dot-horizontal {
+		top: 50%;
+		left: -3px;
+		margin-top: -2.5px;
+		margin-left: 0;
+		animation-name: signal-travel-x;
+	}
+
+	/* Pointer parallax for the system figure: the node layer drifts a few
+	 * pixels toward the pointer while captions/frame stay fixed, giving
+	 * quiet depth. Set via `--tx`/`--ty` (-1…1) on `.sys-figure`. */
+	.sys-nodes {
+		transform: translate3d(calc(var(--tx, 0) * 7px), calc(var(--ty, 0) * 7px), 0);
+		transition: transform 350ms var(--ease-instrument);
+	}
+
+	/* Generic parallax layer for framed project figures. Drift magnitude is
+	 * set per figure via `--parallax-max` (see `pointerParallax` action). */
+	.parallax-layer {
+		transform: translate3d(
+			calc(var(--tx, 0) * var(--parallax-max, 6px)),
+			calc(var(--ty, 0) * var(--parallax-max, 6px)),
+			0
+		);
+		transition: transform 350ms var(--ease-instrument);
+	}
+
+	/* ------------------------------------------------------------------
+	 * Mobile menu overlay entrance. Mount-only animation; unmount is
+	 * instant. Items stagger via inline `animation-delay`. */
+	@keyframes menu-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes menu-item-in {
+		from {
+			opacity: 0;
+			transform: translateY(12px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	.menu-overlay {
+		animation: menu-in 220ms var(--ease-instrument);
+	}
+
+	.menu-item {
+		animation: menu-item-in 450ms var(--ease-instrument) both;
+	}
+
+	/* Skip link: visually hidden until keyboard focus. */
+	.skip-link {
+		position: absolute;
+		top: -100%;
+		left: 1rem;
+		z-index: 50;
+		background-color: var(--color-ink);
+		color: var(--color-surface);
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		padding: 0.625rem 1rem;
+		border-radius: 0 0 0.375rem 0.375rem;
+		transition: top 150ms ease;
+	}
+
+	.skip-link:focus-visible {
+		top: 0;
+		outline-color: var(--color-surface);
+	}
+}
+
+/* Reduced motion: honor the OS setting globally. The `reveal` action also
+ * short-circuits in JS, so content renders immediately with no flash. */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	/* Animated connection signals are removed — static lines remain. */
+	.signal-dot {
+		display: none;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* Long-form Markdown content keeps the portfolio's editorial language while
+   giving paragraphs, headings and code blocks enough breathing room to read. */
+.article-prose {
+	color: var(--color-ink-secondary);
+	font-size: 1.125rem;
+	line-height: 1.8;
+}
+
+.article-prose h2,
+.article-prose h3,
+.article-prose h4 {
+	color: var(--color-ink);
+	font-weight: 600;
+	letter-spacing: -0.02em;
+}
+
+.article-prose h2 {
+	margin-top: 3rem;
+	font-size: 1.65rem;
+	line-height: 1.25;
+}
+
+.article-prose h3 {
+	margin-top: 2.25rem;
+	font-size: 1.3rem;
+	line-height: 1.35;
+}
+
+.article-prose p {
+	margin-top: 1.25rem;
+}
+
+.article-prose p:first-child {
+	margin-top: 0;
+}
+
+.article-prose ul {
+	margin: 1.5rem 0;
+	padding-left: 1.4rem;
+	list-style: square;
+}
+
+.article-prose li + li {
+	margin-top: 0.55rem;
+}
+
+.article-prose blockquote {
+	margin: 2rem 0;
+	border-left: 2px solid var(--color-accent);
+	padding-left: 1.25rem;
+	color: var(--color-ink);
+}
+
+.article-prose code {
+	font-family: var(--font-mono);
+	font-size: 0.85em;
+}
+
+.article-prose pre {
+	margin: 2rem 0;
+	overflow-x: auto;
+	border: 1px solid var(--color-line);
+	padding: 1.25rem;
+	background: var(--color-surface);
+	line-height: 1.65;
+}
+
+.article-prose pre code {
+	font-size: 0.82rem;
+}
+
+.article-prose a {
+	color: var(--color-ink);
+	text-decoration: underline;
+	text-decoration-color: var(--color-accent);
+	text-underline-offset: 0.2em;
+}
+
+@media (max-width: 639px) {
+	.article-prose {
+		font-size: 1.05rem;
+	}
+}

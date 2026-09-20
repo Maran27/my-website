@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Maran A — AI Engineer Resume</title>
+		<style>
+			@page {
+				size: A4;
+				margin: 18mm 20mm 18mm 20mm;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family:
+					'Inter',
+					'Segoe UI',
+					system-ui,
+					-apple-system,
+					sans-serif;
+				font-size: 9.5pt;
+				line-height: 1.5;
+				color: #1a1a1a;
+				background: #fff;
+				-webkit-print-color-adjust: exact;
+				print-color-adjust: exact;
+			}
+
+			.header {
+				text-align: center;
+				margin-bottom: 18pt;
+				padding-bottom: 14pt;
+				border-bottom: 1.5pt solid #d0d0d0;
+			}
+
+			.header h1 {
+				font-size: 20pt;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+				color: #0b0b0d;
+				margin-bottom: 3pt;
+			}
+
+			.header .subtitle {
+				font-size: 10.5pt;
+				font-weight: 500;
+				color: #333;
+				margin-bottom: 6pt;
+			}
+
+			.header .contact {
+				font-size: 8.5pt;
+				color: #555;
+				line-height: 1.6;
+			}
+
+			.header .contact a {
+				color: #1a1a1a;
+				text-decoration: none;
+			}
+
+			.header .contact .sep {
+				margin: 0 6pt;
+				color: #aaa;
+			}
+
+			.section {
+				margin-bottom: 14pt;
+			}
+
+			.section-title {
+				font-size: 8.5pt;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				color: #0b0b0d;
+				border-bottom: 0.75pt solid #d0d0d0;
+				padding-bottom: 3pt;
+				margin-bottom: 8pt;
+			}
+
+			.summary {
+				font-size: 9.5pt;
+				color: #333;
+				line-height: 1.55;
+			}
+
+			.entry {
+				margin-bottom: 12pt;
+			}
+
+			.entry:last-child {
+				margin-bottom: 0;
+			}
+
+			.entry-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				margin-bottom: 2pt;
+			}
+
+			.entry-header .left {
+				font-weight: 700;
+				font-size: 9.5pt;
+				color: #0b0b0d;
+			}
+
+			.entry-header .right {
+				font-size: 8.5pt;
+				color: #666;
+				white-space: nowrap;
+			}
+
+			.entry-sub {
+				font-size: 9pt;
+				color: #444;
+				margin-bottom: 4pt;
+			}
+
+			.entry-role {
+				font-style: italic;
+				color: #555;
+			}
+
+			ul {
+				list-style: none;
+				padding: 0;
+			}
+
+			ul li {
+				position: relative;
+				padding-left: 12pt;
+				margin-bottom: 2.5pt;
+				font-size: 9pt;
+				color: #333;
+				line-height: 1.5;
+			}
+
+			ul li::before {
+				content: '–';
+				position: absolute;
+				left: 0;
+				color: #999;
+			}
+
+			.skills-grid {
+				display: grid;
+				grid-template-columns: 110pt 1fr;
+				gap: 3pt 10pt;
+				font-size: 9pt;
+			}
+
+			.skills-grid .label {
+				font-weight: 600;
+				color: #0b0b0d;
+			}
+
+			.skills-grid .value {
+				color: #333;
+			}
+
+			.interests {
+				font-size: 9pt;
+				color: #333;
+				line-height: 1.6;
+			}
+
+			.two-col {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 0 24pt;
+				page-break-before: always;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<h1>Maran A</h1>
+			<div class="subtitle">AI Engineer</div>
+			<div class="contact">
+				Chennai, India
+				<span class="sep">·</span>
+				<a href="mailto:maranarunmozhi@gmail.com">maranarunmozhi@gmail.com</a>
+				<span class="sep">·</span>
+				<a href="https://github.com/Maran27">github.com/Maran27</a>
+				<span class="sep">·</span>
+				<a href="https://www.linkedin.com/in/maran-arunmozhi-5a43a41a3/"
+					>linkedin.com/in/maran-arunmozhi</a
+				>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="section-title">Professional Summary</div>
+			<div class="summary">
+				AI Engineer working across machine learning, computer vision, NLP, generative AI, document
+				intelligence, RAG, and intelligent automation. Experienced in building AI-driven systems and
+				production-oriented applications using Python, deep learning, LLMs, OCR, Document AI,
+				FastAPI, cloud services, and serverless architectures. Interested in turning emerging AI
+				technologies into useful systems for real-world problems.
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="section-title">Experience</div>
+
+			<div class="entry">
+				<div class="entry-header">
+					<span class="left">Tata Consultancy Services</span>
+					<span class="right">Jan 2025 — Present</span>
+				</div>
+				<div class="entry-sub"><span class="entry-role">AI Engineer</span></div>
+				<ul>
+					<li>
+						Design, develop, and deploy AI-driven solutions using Python, machine learning, deep
+						learning, computer vision, NLP, LLMs, and Document AI.
+					</li>
+					<li>
+						Build document intelligence workflows using Google Document AI and Gemini for
+						classification, extraction, validation, and workflow automation.
+					</li>
+					<li>
+						Develop retrieval-augmented generation applications using LLMs, vector databases, and
+						FastAPI.
+					</li>
+					<li>Work on machine-learning-based resource allocation for airport lounge management.</li>
+					<li>
+						Develop AWS Lambda and Python serverless ETL workflows for Excel-based partner and user
+						data processing.
+					</li>
+					<li>
+						Build OCR and information extraction pipelines using OCR, NER, computer vision, and
+						small language models.
+					</li>
+					<li>
+						Develop real-time computer vision solutions using YOLO and TensorFlow Object Detection.
+					</li>
+					<li>
+						Develop REST APIs using FastAPI and collaborate with architects, developers, QA teams,
+						and stakeholders.
+					</li>
+					<li>
+						Perform model evaluation, optimization, testing, deployment, and production support.
+					</li>
+				</ul>
+			</div>
+
+			<div class="entry">
+				<div class="entry-header">
+					<span class="left">Tata Consultancy Services</span>
+					<span class="right">Aug 2023 — Dec 2024</span>
+				</div>
+				<div class="entry-sub"><span class="entry-role">Systems Engineer</span></div>
+				<ul>
+					<li>
+						Monitored enterprise infrastructure and critical applications in production
+						environments.
+					</li>
+					<li>
+						Managed production incidents, system health monitoring, troubleshooting, escalation, and
+						resolution workflows.
+					</li>
+					<li>Worked with Control-M, WhatsUp Gold, Netreo, and Active Directory.</li>
+					<li>Participated in Major Incident Management and root-cause-analysis activities.</li>
+					<li>
+						Built automation using Python, LLMs, and RAG to improve reporting, documentation, and
+						operational workflows.
+					</li>
+					<li>
+						Collaborated across infrastructure, application, and business teams for production
+						support and change management.
+					</li>
+					<li>Supported deployment validation and continuous improvement initiatives.</li>
+				</ul>
+			</div>
+
+			<div class="entry">
+				<div class="entry-header">
+					<span class="left">Continental Autonomous Mobility</span>
+					<span class="right">Sep 2022 — Jul 2023</span>
+				</div>
+				<div class="entry-sub">
+					<span class="entry-role">Machine Learning Engineer Intern</span>
+				</div>
+				<ul>
+					<li>
+						Developed LSTM-based vehicle trajectory prediction models using spatial-temporal
+						attention.
+					</li>
+					<li>Explored federated learning using PyTorch and Flower.</li>
+					<li>
+						Worked with NGSIM traffic data for vehicle trajectory prediction and traffic scenario
+						analysis.
+					</li>
+					<li>Performed model training, tuning, validation, and experimentation.</li>
+					<li>Collaborated on machine learning research and technical documentation.</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="two-col">
+			<div class="section">
+				<div class="section-title">Education</div>
+				<div class="entry">
+					<div class="entry-header">
+						<span class="left">VIT Vellore</span>
+						<span class="right">2018 — 2023</span>
+					</div>
+					<div class="entry-sub">Integrated M.Tech in Software Engineering · CGPA: 9.18 / 10</div>
+				</div>
+			</div>
+
+			<div class="section">
+				<div class="section-title">Certification</div>
+				<div class="entry">
+					<div class="entry-sub" style="margin-bottom: 0">AWS Certified Cloud Practitioner</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="section-title">Technical Skills</div>
+			<div class="skills-grid">
+				<span class="label">Programming</span>
+				<span class="value">Python</span>
+
+				<span class="label">Machine Learning</span>
+				<span class="value">Machine Learning, Deep Learning, Computer Vision, NLP</span>
+
+				<span class="label">Generative AI</span>
+				<span class="value">LLMs, RAG, AI Agents, Document AI</span>
+
+				<span class="label">Frameworks</span>
+				<span class="value"
+					>FastAPI, PyTorch, TensorFlow, Hugging Face Transformers, LangChain, LangGraph, OpenCV,
+					spaCy</span
+				>
+
+				<span class="label">Cloud / Infra</span>
+				<span class="value">AWS Lambda, Amazon S3, Google Cloud, Google Cloud Storage</span>
+
+				<span class="label">Databases</span>
+				<span class="value">MySQL, SQLite, Redis, Vector Databases</span>
+
+				<span class="label">Document / AI</span>
+				<span class="value">OCR, PaddleOCR, Google Document AI, NER, Information Extraction</span>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="section-title">Selected Areas of Interest</div>
+			<div class="interests">
+				Generative AI · AI Agents · Document Intelligence · Machine Learning Systems ·
+				Quantum-Inspired Optimization · Liquid Neural Networks · Topological Data Analysis ·
+				Mathematics
+			</div>
+		</div>
+	</body>
+</html>
